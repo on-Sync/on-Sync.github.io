@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:
+cover: assets/images/post_cover/git.png
 navigation: True
 title: Git 설정하기 (1) - 개행 설정하기
 date: 2022-09-10
