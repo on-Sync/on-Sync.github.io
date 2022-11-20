@@ -1,0 +1,14 @@
+@startuml
+
+class Singleton {
+    -Singleton()
+    {static} +getInstance()
+}
+
+class Singleton.LazyHolder {
+    {static} -instance: Singleton
+}
+
+Singleton +-- Singleton.LazyHolder
+
+@enduml
