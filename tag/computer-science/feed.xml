@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/computer-science/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2023-03-05T10:18:42+00:00</updated>
+  <id>/tag/computer-science/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">on-Sync | </title>
+  
+
+  
+    <subtitle>개발일기</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Computer Science (1) - Syntactic Sugar</title>
+      <link href="/computer-science-syntactic-sugar" rel="alternate" type="text/html" title="Computer Science (1) - Syntactic Sugar" />
+      <published>2022-11-21T00:00:00+00:00</published>
+      <updated>2022-11-21T00:00:00+00:00</updated>
+      <id>/computer-science-syntactic-sugar</id>
+      <content type="html" xml:base="/computer-science-syntactic-sugar">&lt;h1 id=&quot;syntactic-sugar&quot;&gt;Syntactic Sugar&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;편하게 읽고 쓰기&lt;/strong&gt; 위해서 변형된 표현 방식&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;문법을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단순화&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;직관화&lt;/code&gt;하므로 사용자의 작업속도를 향상시킨다.
+단, 단순화의 과정에서 암묵적인(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;implicit&lt;/code&gt;) 규칙이 존재할 수 있고,
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;implicit&lt;/code&gt; 의 위반은 &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeException&lt;/code&gt; 의 원인이 되기에 사용에 주의해야 한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;loop-syntactic-sugar&quot;&gt;Loop Syntactic Sugar&lt;/h2&gt;
+
+&lt;h3 id=&quot;for-each-와-iterator&quot;&gt;For-each 와 Iterator&lt;/h3&gt;
+
+&lt;h2 id=&quot;initializer-syntactic-sugar&quot;&gt;Initializer Syntactic Sugar&lt;/h2&gt;
+
+&lt;h3 id=&quot;bracket-initializer&quot;&gt;Bracket Initializer&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;actions after constructor&lt;/li&gt;
+  &lt;li&gt;implement Anonymous Class&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;api-interface-syntactic-sugar&quot;&gt;API Interface Syntactic Sugar&lt;/h2&gt;
+
+&lt;h3 id=&quot;fluent-interface&quot;&gt;Fluent Interface&lt;/h3&gt;
+
+&lt;h3 id=&quot;lambda-expressions&quot;&gt;Lambda Expressions&lt;/h3&gt;
+
+&lt;h3 id=&quot;string-append&quot;&gt;String Append&lt;/h3&gt;
+
+&lt;h2 id=&quot;operator-syntactic-sugar&quot;&gt;Operator Syntactic Sugar&lt;/h2&gt;
+
+&lt;h3 id=&quot;ternary-operator&quot;&gt;Ternary Operator&lt;/h3&gt;
+
+&lt;h3 id=&quot;auto-boxing&quot;&gt;Auto Boxing&lt;/h3&gt;
+
+&lt;h3 id=&quot;type-casting&quot;&gt;Type Casting&lt;/h3&gt;
+
+&lt;h3 id=&quot;augmented-assignment&quot;&gt;Augmented Assignment&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;i.e, Compound Assignment&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;https://serantechexplore.wixsite.com/website/post/syntactic-sugars-in-java&lt;/p&gt;
+
+&lt;p&gt;https://www.quora.com/What-syntactic-sugars-are-there-in-Java&lt;/p&gt;
+
+&lt;p&gt;https://stackoverflow.com/questions/3866764/java-syntactic-sugar&lt;/p&gt;
+
+&lt;p&gt;https://jwdeveloper.tistory.com/148&lt;/p&gt;
+
+&lt;p&gt;https://carrotweb.tistory.com/96&lt;/p&gt;
+
+&lt;p&gt;https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;amp;blogId=msyang59&amp;amp;logNo=220594944655&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>on-Sync</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Computer Science" />
+      
+        <category term="Java" />
+      
+
+      
+        <summary type="html">Syntactic Sugar</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

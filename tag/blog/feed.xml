@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/blog/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2023-03-05T10:18:42+00:00</updated>
+  <id>/tag/blog/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">on-Sync | </title>
+  
+
+  
+    <subtitle>개발일기</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">GitHub Pages 블로그 만들기 (1)</title>
+      <link href="/github-page-jekyll-jasper-1" rel="alternate" type="text/html" title="GitHub Pages 블로그 만들기 (1)" />
+      <published>2022-08-15T00:00:00+00:00</published>
+      <updated>2022-08-15T00:00:00+00:00</updated>
+      <id>/github-page-jekyll-jasper-1</id>
+      <content type="html" xml:base="/github-page-jekyll-jasper-1">&lt;h1 id=&quot;github-pages-란-&quot;&gt;GitHub Pages 란 ?&lt;/h1&gt;
+
+&lt;p&gt;GitHub Pages 는 Jekyll 과 같은 웹빌더 환경을 제공하는 서비스입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-pages-사용방법&quot;&gt;GitHub Pages 사용방법&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 서비스는 기본적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{username}.github.io&lt;/code&gt; 형식의 이름을 갖는 저장소를 생성합니다.&lt;/li&gt;
+  &lt;li&gt;저장소 생성 후에는 설정에서 Pages 브랜치를 지정합니다. 이때, GitHub 은 자동으로 업로드된 소스에서 웹빌더를 파악하여 정적 웹파일을 생성 및 제공합니다.&lt;/li&gt;
+  &lt;li&gt;기본 URL 은 저장소의 이름인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{username}.github.io&lt;/code&gt; 로 노출되며, 추가 설정으로 변경할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jekyll-사용하기&quot;&gt;Jekyll 사용하기&lt;/h2&gt;
+
+&lt;h3 id=&quot;github-pages-제공버전&quot;&gt;GitHub Pages 제공버전&lt;/h3&gt;
+
+&lt;p&gt;Jekyll 은 Ruby 기반의 웹빌더입니다.
+GitHub Pages 에서는 Ruby 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2.7.4&lt;/code&gt;, Jekyll 은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3.9.2&lt;/code&gt; 버전으로 제공하고 있습니다.
+참고로 현재 최신 Ruby 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3.x.x&lt;/code&gt;, Jekyll 은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4.x.x&lt;/code&gt; 이상 버전이므로, 의존성에 맞는 버전을 사용해야합니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;상세항목은 &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;GitHub Page`s Dependency versions&lt;/a&gt; 를 참고하시기 바랍니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;jekyll-작업환경-만들기&quot;&gt;Jekyll 작업환경 만들기&lt;/h3&gt;
+
+&lt;p&gt;GitHub Pages 의 단점은 Commit 시점 기준으로 정적파일을 재빌드하고, 오류사항을 제공하지 않습니다.
+그렇기에 개발자는 로컬에서 정상여부를 확인한 후에 저장소에 푸시하는 것이 좋습니다.&lt;/p&gt;
+
+&lt;p&gt;Ruby 와 Jekyll 를 위에 명시된 의존성에 맞게 직접 설치해도 되지만,
+여기서는 Docker 를 사용하여 간편하게 구성해보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;우선 기본 베이스는 Ruby 이미지를 사용합니다.
+물론 Jekyll 이미지도 DockerHub 에 존재하지만,
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3.9.2&lt;/code&gt; 버전이 없어서 디자인되어 공유되는 Jekyll 스킨을 사용할 때
+피곤해지기에 저는 Ruby 이미지를 베이스로 사용하는 것을 추천합니다.&lt;/p&gt;
+
+&lt;p&gt;우리가 사용할 베이스 버전은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ruby:2.7-alpine3.16&lt;/code&gt; 입니다.
+Ruby 에서는 언어 특성상 고가용성보단 저사양 효율성에 알맞기에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;50MB&lt;/code&gt;의 가벼운 alpine os 로 이미지를 제공합니다.&lt;/p&gt;
+
+&lt;p&gt;alpine 에서는 OS 패키지 매니저로 apk 를 사용합니다.
+기본적인 개발환경은 apk 를 사용하여 설치합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apk update
+apk add &lt;span class=&quot;nt&quot;&gt;--no-cache&lt;/span&gt; build-base gcc cmake git curl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 후 Ruby 패키지 매니저인 gem 을 통해서 Jekyll 및 Bundler 를 설치해줍니다.
+버전은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3.9.2&lt;/code&gt; 를 지정하는 것이 심신건강에 좋습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem update bundler &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; 3.9.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;기본적인 환경이 완성되었다면, Jekyll 을 사용하여 새로운 웹 프로젝트를 만들거나 오픈소스로 디자인된 스킨들을 활용합니다.
+저는 미적감각이 없으므로 &lt;a href=&quot;http://jekyllthemes.org/themes/jasper2/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jasper2&lt;/code&gt;&lt;/a&gt; 를 사용하겠습니다.
+링크에서 Hompage 를 누르면 GitHub 저장소로 이동하게 됩니다.
+다음과 같이 소스를 로컬에 Clone 해줍니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/jekyllt/jasper2.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;설치된 웹프로젝트에는 기본적으로 Gemfile 에 몇가지 의존성 설정이 되어있습니다.
+없어도 기본적인 의존성을 설치해야 하기에 bundler 로 Gem (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ruby 의 모듈단위&lt;/code&gt;) 들을 다운로드받습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundler &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;설치를 생략하고 Jekyll 을 실행해도 좋지만, 종종 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Required&lt;/code&gt; 오류를 만날 수 있습니다. (e.g. webrick)
+이때는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler add {설치요구대상}&lt;/code&gt; 로 해당 요구항목을 Gemfile 의존성에 추가하여 실행합니다.&lt;/p&gt;
+
+&lt;p&gt;의존성 설치까지 완료되었다면 다음 명령어로 Jekyll 을 실행해주면 됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundler &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; 3.9.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여러 버전의 jekyll 이 설치되어있다면 버전을 명시해주면 됩니다.
+참고로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; 를 바로 사용한다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATH&lt;/code&gt; 명시된 jekyll 버전을 사용하기에 의존성 문제를 겪을 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;만약 Docker 로 실행할 경우, 기본 IP 가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt; 로 지정되니,
+Host 에서 접근가능하도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--host 0.0.0.0&lt;/code&gt; 을 추가합니다.&lt;/p&gt;
+
+&lt;p&gt;추가로 디버깅에 유용한 옵션으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--livereload&lt;/code&gt; 를 명시하면 html, css 같은 정적인 파일이 수정되었을 때,
+Jekyll 재 실행 없이, 웹화면을 변경시킵니다. 이 옵션이 정상적으로 작동하지 않는다면
+파일변경 이벤트를 캐치하지 못하여 Regenerate 를 하지 않았거나
+이벤트 연결포트(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default: 35729&lt;/code&gt;) 가 닫혀있을 수 있습니다.
+후자는 포트를 열어주면 되고, 전자의 경우 권한이나 여러문제가 있겠지만
+기본적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--force-polling&lt;/code&gt; 옵션을 추가해주면 해결됩니다.&lt;/p&gt;
+
+&lt;p&gt;지금까지의 모든 작업내용을 Docker 로 옮기면 다음과 같습니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;dockerfile&quot;&gt;Dockerfile&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM ruby:2.7-alpine3.16
+
+LABEL &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;gitpages-jekyll&quot;&lt;/span&gt;
+LABEL &lt;span class=&quot;nv&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;putstack@gmail.com&quot;&lt;/span&gt;
+LABEL &lt;span class=&quot;nv&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# update package manager &amp;amp; install default program&lt;/span&gt;
+RUN apk update
+RUN apk add &lt;span class=&quot;nt&quot;&gt;--no-cache&lt;/span&gt; build-base gcc cmake git curl
+
+&lt;span class=&quot;c&quot;&gt;# install bundler&lt;/span&gt;
+RUN gem update bundler &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# git-pages latest support version (newest is upper 4.2.x, but not supported)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; 3.9.2
+
+&lt;span class=&quot;c&quot;&gt;# setting entrypoint&lt;/span&gt;
+COPY entrypoint.sh /usr/local/bin/entrypoint
+WORKDIR /srv/jasper2
+ENTRYPOINT &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;entrypoint&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;entrypointsh&quot;&gt;entrypoint.sh&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+
+bundle &lt;span class=&quot;nb&quot;&gt;install
+
+&lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여기까지 완료했다면 Jekyll 의 Docker 기반 로컬개발환경은 준비완료되었습니다.
+관련 소스는 &lt;a href=&quot;https://github.com/MyBestPractice/dockerfile-factory/tree/master/gitpages-jekyll&quot;&gt;putstack/gitpages-jekyll 이미지의 생성파일&lt;/a&gt;
+과 &lt;a href=&quot;https://github.com/MyBestPractice/dockerfile-factory/blob/master/.idea/runConfigurations/gitpages_jekyll_Dockerfile.xml&quot;&gt;putstack/gitpages-jekyll 이미지의 컨테이너 실행시 환경설정&lt;/a&gt;
+에 올려두었습니다.&lt;/p&gt;
+
+&lt;p&gt;다음에는 한글폰트를 지정하여 이쁜 글씨로 &lt;strong&gt;포스팅 하는 방법&lt;/strong&gt; 에 대해 얘기해보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;감사합니다.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>on-Sync</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Blog" />
+      
+        <category term="GitHub" />
+      
+        <category term="Daily" />
+      
+
+      
+        <summary type="html">GitHub Pages 란 ?</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

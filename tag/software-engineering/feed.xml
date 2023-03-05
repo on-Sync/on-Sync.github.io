@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/software-engineering/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2023-03-05T10:18:42+00:00</updated>
+  <id>/tag/software-engineering/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">on-Sync | </title>
+  
+
+  
+    <subtitle>개발일기</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Software Engineering (1) - 전체 구조 요약</title>
+      <link href="/software-engineering" rel="alternate" type="text/html" title="Software Engineering (1) - 전체 구조 요약" />
+      <published>2022-11-13T00:00:00+00:00</published>
+      <updated>2022-11-13T00:00:00+00:00</updated>
+      <id>/software-engineering</id>
+      <content type="html" xml:base="/software-engineering">&lt;h1 id=&quot;software-engineering&quot;&gt;Software Engineering&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Software Engineering 에서 소프트웨서 개발은 다음과 같은 포함관계로 구체화된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Software Development Process (절차)
+    &lt;ul&gt;
+      &lt;li&gt;Software Development Methodology (방법론)
+        &lt;ul&gt;
+          &lt;li&gt;Programming Paradigm (패러다임)
+            &lt;ul&gt;
+              &lt;li&gt;Software Design Pattern (패턴)
+                &lt;ul&gt;
+                  &lt;li&gt;Programming Idiom (관용구)
+                    &lt;ul&gt;
+                      &lt;li&gt;Programming Implementation (구현체) (i.g Concrete Algorithm)&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;software-development-process-절차&quot;&gt;Software Development Process (절차)&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;SDLC 을 조합하는 10가지 개발절차 모델&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;소프트웨어 개발 프로세스 모델의 이해&lt;/li&gt;
+  &lt;li&gt;주머구구식 모델&lt;/li&gt;
+  &lt;li&gt;선형 순차적 모델&lt;/li&gt;
+  &lt;li&gt;V모델 (Test by Step)&lt;/li&gt;
+  &lt;li&gt;진화적 프로세스 모델 (N-Prototype)&lt;/li&gt;
+  &lt;li&gt;나선형 모델&lt;/li&gt;
+  &lt;li&gt;단계적 개발 모델 (Release)&lt;/li&gt;
+  &lt;li&gt;통합 프로세스 모델 (Progressive)&lt;/li&gt;
+  &lt;li&gt;애자일 프로세스 모델 (On needs basis, like YAGNI)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;software-development-life-cycle-개발-생명-주기-sdlc&quot;&gt;Software Development Life Cycle (개발 생명 주기, SDLC)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;요구사항 정의 (R, Requirement)&lt;/li&gt;
+  &lt;li&gt;요구사항 분석 (A, Analysis)&lt;/li&gt;
+  &lt;li&gt;설계 (D, Design)&lt;/li&gt;
+  &lt;li&gt;구현 (C, Coding)&lt;/li&gt;
+  &lt;li&gt;테스트 (T, Test)&lt;/li&gt;
+  &lt;li&gt;유지보수 (M, Maintenance)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;software-development-methodology-방법론&quot;&gt;Software Development Methodology (방법론)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;개발절차 모델의 구체화된 방법
+    &lt;ul&gt;
+      &lt;li&gt;(e.g, Agile`s Extreme Programming = XP)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;방법론의-구체화-대상&quot;&gt;방법론의 구체화 대상&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;작업절차&lt;/li&gt;
+  &lt;li&gt;작업방법&lt;/li&gt;
+  &lt;li&gt;산출물&lt;/li&gt;
+  &lt;li&gt;관리&lt;/li&gt;
+  &lt;li&gt;기법&lt;/li&gt;
+  &lt;li&gt;도구&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;programming-paradigm-패러다임&quot;&gt;Programming Paradigm (패러다임)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;개발언어 탄생(설계)의 기반이자 특징이 될 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;(e.g, Procedural = C, Object-oriented = Java )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;방법론을 실현하기 위한 지향점 또는 이념.
+    &lt;ul&gt;
+      &lt;li&gt;(e.g, OOP, DDD, TDD, CBD …)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;software-design-pattern-패턴&quot;&gt;Software Design Pattern (패턴)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;패러다임 내에서 소프트웨어의 설계를 위한 반복적인 유형을 말한다.&lt;/li&gt;
+  &lt;li&gt;유지보수를 위해 재사용성에 중점을 둔다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;정답(구현)이 아닌 방향성(해결책)의 제시이며&lt;/strong&gt;, 책 또는 논문으로 공유되고 전파되어졌다.&lt;/li&gt;
+  &lt;li&gt;크게 다음과 같이 분류할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;GoF`s Patterns
+        &lt;ul&gt;
+          &lt;li&gt;디자인 패턴 중 가장 유명한 제안으로 Design Patterns 란 이름의 서적으로 집필되었다.&lt;/li&gt;
+          &lt;li&gt;크게 생성(Assignment), 구조(Composition), 행동(Execution) 관점으로 분류된다.
+            &lt;ul&gt;
+              &lt;li&gt;비슷한 서적인 Code Complete 에서 제시된 디자인 패턴과 다소 중첩된다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Concurrency Patterns
+        &lt;ul&gt;
+          &lt;li&gt;자원을 공유하는 방법을 제안한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Architectural Patterns
+        &lt;ul&gt;
+          &lt;li&gt;다수의 소프트웨어를 연결/구조화 하는 방법을 제안한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;그외 패턴들
+        &lt;ul&gt;
+          &lt;li&gt;문헌이 아닌 코드/프레임워크로 전파되어 사용되는 패턴&lt;/li&gt;
+          &lt;li&gt;(e.g, Dependency Injection, Lazy Loading, Delegation …)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;idiom-관용구&quot;&gt;Idiom (관용구)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Idiom 은 제시된 패턴(방향성)을 구현한 것 중 정형화된 작성 방법을 말한다.&lt;/li&gt;
+  &lt;li&gt;동일한 패러다임을 지원하는 언어는 같은 패턴을 구사할 수 있지만, 같은 관용구는 언어의 전체적인 특성에 따라 다르게 표현될 수 있다.&lt;/li&gt;
+  &lt;li&gt;관용구는 구현체 중 보편화된 작성 방법들이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;implementation-구현체&quot;&gt;Implementation (구현체)&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;i.e, Concrete Algorithm&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;논리 또는 구조에 대해 구체적으로 작성된 내용을 말한다.&lt;/li&gt;
+  &lt;li&gt;주어진 전략이나 모델뿐만 아니라 사용자(개발자)에 따라 작성된 내용이 상이할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;&lt;em&gt;작성자의 개인적인 생각으론, 구현방법 또는 구현체가 상위 집합에서 제시된 개념에 벗어날 수록 유지보수 비용이 증가한다고 판단하고 있다.&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>on-Sync</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="Software Engineering" />
+      
+
+      
+        <summary type="html">Software Engineering</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Design Pattern (1) - Singleton</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="개발일기" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/design-pattern-singleton" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="on-Sync" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Pattern (1) - Singleton" />
+    <meta property="og:description" content="Singleton 한정된 자원을 아끼는 생성 패턴 단어의 뜻 Single + -ton = (단독 + 인 것) = 단일 개체 (e.g. Singleton set : 단일 개체 집합) 집합의 기준 Singleton 은 집합의 기준에 따라 단일성을 보장하면 되는 개념이다. 하지만 일반적으로 단일 소프트웨어에서 유일성을 보장하는 것을 Singleton 이라 부른다. 즉, 더 작은" />
+    <meta property="og:url" content="/design-pattern-singleton" />
+    <meta property="og:image" content="/assets/images/blog-cover-winter.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/ghost" />
+    <meta property="article:author" content="https://www.facebook.com/ghost" />
+    <meta property="article:published_time" content="2022-11-16T00:00:00+00:00" />
+    <meta property="article:modified_time" content="2022-11-16T00:00:00+00:00" />
+    <meta property="article:tag" content="Design Pattern" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Design Pattern (1) - Singleton" />
+    <meta name="twitter:description" content="Singleton 한정된 자원을 아끼는 생성 패턴 단어의 뜻 Single + -ton = (단독 + 인 것) = 단일 개체 (e.g. Singleton set : 단일 개체 집합) 집합의 기준 Singleton 은 집합의 기준에 따라 단일성을 보장하면 되는 개념이다. 하지만 일반적으로 단일 소프트웨어에서 유일성을 보장하는 것을 Singleton 이라 부른다. 즉, 더 작은" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image" content="/assets/images/blog-cover-winter.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="on-Sync" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Design Pattern" />
+    <meta name="twitter:site" content="@tryghost" />
+    <meta name="twitter:creator" content="@tryghost" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "on-Sync",
+        "logo": "/"
+    },
+    "url": "/design-pattern-singleton",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/assets/images/blog-cover-winter.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/design-pattern-singleton"
+    },
+    "description": "Singleton 한정된 자원을 아끼는 생성 패턴 단어의 뜻 Single + -ton = (단독 + 인 것) = 단일 개체 (e.g. Singleton set : 단일 개체 집합) 집합의 기준 Singleton 은 집합의 기준에 따라 단일성을 보장하면 되는 개념이다. 하지만 일반적으로 단일 소프트웨어에서 유일성을 보장하는 것을 Singleton 이라 부른다. 즉, 더 작은"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Design Pattern (1) - Singleton" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/">on-Sync</a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">About</a></li>
+    <li class="nav-getting-started" role="menuitem"><a href="/tag/getting-started/">Getting Started</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/ghost" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tryghost" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscribe</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full  tag-design-pattern tag-java post no-image">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="16 November 2022">16 November 2022</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/design-pattern/'>DESIGN PATTERN</a>,
+                            
+                        
+                            
+                               <a href='/tag/java/'>JAVA</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Design Pattern (1) - Singleton</h1>
+            </header>
+
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <h1 id="singleton">Singleton</h1>
+
+<blockquote>
+  <p><strong><em>한정된 자원을 아끼는</em></strong> 생성 패턴</p>
+</blockquote>
+
+<h2 id="단어의-뜻">단어의 뜻</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Single</code> + <code class="language-plaintext highlighter-rouge">-ton</code></li>
+  <li>= (<code class="language-plaintext highlighter-rouge">단독</code> + <code class="language-plaintext highlighter-rouge">인 것</code>)</li>
+  <li>= <code class="language-plaintext highlighter-rouge">단일 개체</code></li>
+</ul>
+
+<blockquote>
+  <p>(e.g. Singleton set : 단일 개체 집합)</p>
+</blockquote>
+
+<h2 id="집합의-기준">집합의 기준</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Singleton</code> 은 집합의 기준에 따라 단일성을 보장하면 되는 개념이다.
+하지만 일반적으로 단일 소프트웨어에서 유일성을 보장하는 것을 <code class="language-plaintext highlighter-rouge">Singleton</code> 이라 부른다.
+즉, 더 작은 단위에서도 사용될 수 있으므로 <code class="language-plaintext highlighter-rouge">Singleton</code> 의 집합수준을 확인할 필요가 있다.</p>
+
+<h3 id="class-diagram">Class Diagram</h3>
+
+<blockquote>
+  <p>클래스(Application) 수준에서의 사용방식</p>
+</blockquote>
+
+<h4 id="범용적인-설계구조">범용적인 설계구조</h4>
+
+<blockquote>
+  <p>static (non final)</p>
+</blockquote>
+
+<p><img src="https://www.plantuml.com/plantuml/png/SoWkIImgAStDuU9ApaaiBbO8pinBpqajoSzJgEPI089ge8AIpEHQ1TtCF20pBpdL2g46h48NpjNGHDMYdPvQuWdL1PIhvU9oICrB0Le60000" alt="범용적인 설계구조" /></p>
+
+<h4 id="jvm-기반에서의-효율성-강화">JVM 기반에서의 효율성 강화</h4>
+
+<blockquote>
+  <p>Class Loader 의 Load 시점을 고려한 설계</p>
+</blockquote>
+
+<p><img src="https://www.plantuml.com/plantuml/png/SoWkIImgAStDuU9ApaaiBbO8pinBpqajoSzJgEPI009Tk8269bYW6gYZ93EvLa4xFRN4Cm_8oqjE1ShLOfYWvvDOLUcHdvEIMgHGZQfNDnEgqGgX76G2mdPjNLsi9d5nEQJcfG0T3000" alt="JVM 기반에서의 효율성 강화" /></p>
+
+<h2 id="class-loader-의-load-방식">Class Loader 의 Load 방식</h2>
+
+<p>로드시점은 다음 두가지로 구분된다.</p>
+
+<ul>
+  <li>Load-Time Dynamic Loading</li>
+  <li>Runtime Dynamic Loading</li>
+</ul>
+
+<p>전자는 JVM 이 ByteCode 의 main() 부터 순차적으로 코드를 검사하면서, <code class="language-plaintext highlighter-rouge">참조</code> 하는 <strong>클래스들을</strong> <code class="language-plaintext highlighter-rouge">Method Area</code> 에 적재하는 방식이다.
+후자는 <code class="language-plaintext highlighter-rouge">Reflection</code> 처럼 실행 중에 대상이 지정될 때, 해당 클래스를 <code class="language-plaintext highlighter-rouge">Method Area</code> 에 적재하는 방식이다.
+전자도 Dynamic 이라 불리는 이유는 클래스의 사용이 <code class="language-plaintext highlighter-rouge">명시적 참조</code>가 아닌 <code class="language-plaintext highlighter-rouge">암시적 참조</code> 는 제외되기 때문이다.
+실제로 같은 main() 를 소유하는 클래스 안에 <code class="language-plaintext highlighter-rouge">inner 클래스</code> 가 하나 더 존재해도 이를 실제로 참조하고 있지 않다면,
+메모리에 적재하지 않는다. 이러한 이유를 <code class="language-plaintext highlighter-rouge">External Class Loader</code> 를 생각하면 우리가 외부에서 가져온 코드들을 실제로 다 사용하지 않기에
+필요한 것만 사용하겠다는 JVM 구현을 위한 요구사항에 기반한다.</p>
+
+<p>그렇게 적재되는 <code class="language-plaintext highlighter-rouge">명시적 참조</code> 된 클래스 정보도, 전부 적재되지는 않는다.
+내부 구조에서 변동성이 있는 정보(클래스 상태/형태)만을 적재하고,
+변동성이 없는 다음 항목들은 제외된다.</p>
+
+<ul>
+  <li>Constant : <code class="language-plaintext highlighter-rouge">static</code> + <code class="language-plaintext highlighter-rouge">final</code> 이 동시에 명시될 경우, JVM 상의 불변대상이므로 Class 구조와 무관하게 처리된다.</li>
+  <li>Literal : Operand 인 문자 또는 숫자값, 이때 숫자값은 메모리 설정시 효율이 떨어지는 큰 수에 해당된다. (e.g, <code class="language-plaintext highlighter-rouge">int num = 1111111111111;</code> 인 경우 <code class="language-plaintext highlighter-rouge">1111111..</code> 의 할당비효율성으로 Literal 로 취급된다.)</li>
+  <li>Static Nested(Inner) Class : <code class="language-plaintext highlighter-rouge">static</code> 이 지정된 <code class="language-plaintext highlighter-rouge">Inner Class</code> 는 클래스구조가 불변(Final)인 점을 고려하여 <code class="language-plaintext highlighter-rouge">Outer Class</code> 에 종속되지 않는다 판단하여 별도로 처리된다.</li>
+</ul>
+
+<blockquote>
+  <p>이후 나올 <code class="language-plaintext highlighter-rouge">Holder</code> Idiom 은 마지막 제외기준을 활용한다.</p>
+</blockquote>
+
+<h2 id="idiom">Idiom</h2>
+
+<blockquote>
+  <p>보편화된 구현틀을 말하며, 관용구라 부른다.</p>
+</blockquote>
+
+<h3 id="eager-initialization"><code class="language-plaintext highlighter-rouge">Eager Initialization</code></h3>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">non-final</code> 이기에 Class Load 시에 적재(할당,연결,초기화)된다.</p>
+</blockquote>
+
+<ul>
+  <li>장점
+    <ul>
+      <li>Class Loader(JVM)의 구조적인 단일보장에 책임을 전가하므로 안정성이 높다.</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li>실재로 instance 변수에 유무와 관계없이 클래스의 사용만으로 초기화되므로 메모리 낭비(Memory Leak)가 존재한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Singleton</span><span class="o">();</span>
+
+    <span class="kd">private</span> <span class="nf">Singleton</span> <span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="lazy-initialization"><code class="language-plaintext highlighter-rouge">Lazy Initialization</code></h3>
+
+<blockquote>
+  <p>getInstance() 를 호출할 때, 메모리에 할당한다.</p>
+</blockquote>
+
+<ul>
+  <li>장점
+    <ul>
+      <li>메모리 낭비를 방지할 수 있다.</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Thread-safe</code> 하지 않으므로 중복된 초기화를 진행할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="n">instance</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Singleton</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="lazy-initialization--synchronizedthread-safe"><code class="language-plaintext highlighter-rouge">Lazy Initialization</code> + <code class="language-plaintext highlighter-rouge">Synchronized(Thread-safe)</code></h3>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">synchronized</code> 를 추가하여 <code class="language-plaintext highlighter-rouge">Thread-safe</code> 를 제공한다.</p>
+</blockquote>
+
+<ul>
+  <li>장점
+    <ul>
+      <li>중복 초기화가 발생하지 않는다.</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">synchronized</code> 는 <code class="language-plaintext highlighter-rouge">Class</code> 기준의 <code class="language-plaintext highlighter-rouge">Lock</code> 이 적용되므로, <code class="language-plaintext highlighter-rouge">Queue</code> 방식의 구조적인 속도 정체(비용)가 발생한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="n">instance</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="nc">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Singleton</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="lazy-initialization--synchronizedthread-safe--double-checked-locking"><code class="language-plaintext highlighter-rouge">Lazy Initialization</code> + <code class="language-plaintext highlighter-rouge">Synchronized(Thread-safe)</code> + <code class="language-plaintext highlighter-rouge">Double-Checked Locking</code></h3>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">synchronized bracket</code> 을 사용하여 사전 체크를 제공한다.</p>
+</blockquote>
+
+<ul>
+  <li>장점
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Thread-safe</code> 를 제공함과 동시에 <code class="language-plaintext highlighter-rouge">Lock</code> 을 최소화한다.</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li>JVM 요구사항에 따라 <code class="language-plaintext highlighter-rouge">메모리 할당</code> &gt; <code class="language-plaintext highlighter-rouge">연결</code> &gt; <code class="language-plaintext highlighter-rouge">초기화</code> 순서로 객체를 생성하게 되는데, null 의 유무는 <code class="language-plaintext highlighter-rouge">메모리 할당</code> 에 따라 판별된다.</li>
+      <li>즉, A 가 <code class="language-plaintext highlighter-rouge">초기화</code>를 완료하기 전인 찰나의 순간에 B 가 접근할 경우 재 초기화를 시도하는 <strong>하드웨어적인 결함</strong> 이 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="n">instance</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="nc">Singleton</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Singleton</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="lazy-initialization--synchronizedthread-safe--double-checked-locking--without-cpu-cache"><code class="language-plaintext highlighter-rouge">Lazy Initialization</code> + <code class="language-plaintext highlighter-rouge">Synchronized(Thread-safe)</code> + <code class="language-plaintext highlighter-rouge">Double-Checked Locking</code> + <code class="language-plaintext highlighter-rouge">Without CPU Cache</code></h3>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">volatile</code> 을 지정하여 <code class="language-plaintext highlighter-rouge">Thread</code> 들이 데이터를 메모리에서 접근하여 동기화 문제를 줄인다.</p>
+</blockquote>
+
+<ul>
+  <li>장점
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Cache</code> 를 위한 처리시간이 사라지므로 <code class="language-plaintext highlighter-rouge">Thread-safe</code> 를 위한 찰나의 비동기화 시간을 줄인다.</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">volatile</code> 가 메모리를 직접접근하므로 <code class="language-plaintext highlighter-rouge">Multi-Write</code> 에 안정성을 보장하지 않는다.
+        <ul>
+          <li>찰나의 순간에 들어온 처리가 있다면 후순위 대상의 처리로 <code class="language-plaintext highlighter-rouge">Overwrite</code> 된다.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">volatile</code> 는 <code class="language-plaintext highlighter-rouge">Non-Cache</code> 이므로 매번 읽는 시간(비용)에 더 소요된다.</li>
+      <li>또한, 이러한 구조를 위해서 제공되는 키워드가 아니기에 기능의 탄생배경과 맞지 않아 위험성이 크다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">volatile</span> <span class="nc">Singleton</span> <span class="n">instance</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="nc">Singleton</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Singleton</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="lazy-initialization--nested-static-class-holder"><code class="language-plaintext highlighter-rouge">Lazy Initialization</code> + <code class="language-plaintext highlighter-rouge">Nested Static Class Holder</code></h3>
+
+<blockquote>
+  <p>Class Loader(JVM) 의 처리방식에 안정성을 위임한다.</p>
+</blockquote>
+
+<ul>
+  <li>장점
+    <ul>
+      <li>소스코드가 아닌 JVM 의 요구사항에 맞게 보장되므로, 가장 안정성이 높은 방식이다.</li>
+      <li><strong>가장 최신의 방법으로 권장되고 있다.</strong></li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li>JVM 구현체에 따라 예기치 못한 문제가 발생할 수 있다.
+        <ul>
+          <li>하지만 이는 개인의 코드가 아닌 전체적인 개발자 생태계에 의해 검증되기에 개인이 걱정할 문제는 아니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Singleton</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nf">Singleton</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Singleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Holder</span><span class="o">.</span><span class="na">instance</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Holder</span>  <span class="o">{</span>
+        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Singleton</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Singleton</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="java-api-의-singleton"><code class="language-plaintext highlighter-rouge">JAVA API</code> 의 <code class="language-plaintext highlighter-rouge">Singleton</code></h2>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">JAVA API</code> 에서의 <code class="language-plaintext highlighter-rouge">Singleton</code> 는 주로 단일 소프트웨어가 아닌 <code class="language-plaintext highlighter-rouge">Collection</code> 기준의 유일성을 말한다.</p>
+</blockquote>
+
+<h3 id="호출방법">호출방법</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">List.of(E e)</code> : Java 9 부터 지원, 정확히는 Immutable 기반 Collection 을 활용한 Overload Method</li>
+  <li><code class="language-plaintext highlighter-rouge">Collections.singletonList(E e)</code> : Collection 수준의 Singleton 를 목표로 제공된 기능</li>
+</ul>
+
+<h3 id="구현구조">구현구조</h3>
+
+<ul>
+  <li>Collection 수준에서 구현하는 방법은 크게 1) <code class="language-plaintext highlighter-rouge">final</code> 제한, 2)<code class="language-plaintext highlighter-rouge">Exception</code> 처리 두 가지로 나뉜다.</li>
+  <li>구현체에 따라 중복되서 사용되는 경우도 존재한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SingletonList</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="kd">final</span> <span class="no">E</span> <span class="n">element</span><span class="o">;</span>
+  
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">removeIf</span><span class="o">(</span><span class="nc">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="no">E</span><span class="o">&gt;</span> <span class="n">filter</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">();</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">replaceAll</span><span class="o">(</span><span class="nc">UnaryOperator</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="n">operator</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h2 id="spring-의-singleton"><code class="language-plaintext highlighter-rouge">Spring</code> 의 <code class="language-plaintext highlighter-rouge">Singleton</code></h2>
+
+<p><code class="language-plaintext highlighter-rouge">Spring</code> 의 <code class="language-plaintext highlighter-rouge">Singleton</code> 은 DI 를 위한 IoC 에서 활용된다.
+IoC 는 <code class="language-plaintext highlighter-rouge">POJO</code> 를 <code class="language-plaintext highlighter-rouge">Bean</code> 이라는 단위로 저장하여 사용하고 <code class="language-plaintext highlighter-rouge">Bean</code>의 기본 관리 수준은 소프트웨서 상의 단일 개체이며 이를 <code class="language-plaintext highlighter-rouge">SingletonScope</code> 라고 부른다.
+물론 다른 수준의 <code class="language-plaintext highlighter-rouge">Singleton</code> 을 제공하는데, 크게 두가지로 <code class="language-plaintext highlighter-rouge">ConfigurableBeanFactory</code>, <code class="language-plaintext highlighter-rouge">WebApplicationContext</code> 로 나뉜다.
+<code class="language-plaintext highlighter-rouge">ConfigurableBeanFactory</code> 는 기본적인 <code class="language-plaintext highlighter-rouge">Spring Framework</code> 의 IoC 이고, <code class="language-plaintext highlighter-rouge">WebApplicationContext</code> 는 <code class="language-plaintext highlighter-rouge">Spring MVC</code> 기반의 IoC 이다.
+기본형은 다시 Default 인 <code class="language-plaintext highlighter-rouge">SingletonScope</code> 과 항시 재생성되는 <code class="language-plaintext highlighter-rouge">PrototypeScope</code> 으로 나뉘며 주로 Status 기반의 Object 에 활용된다.
+MVC 는 <code class="language-plaintext highlighter-rouge">HTTP</code> 기준의 요청으로 수준을 나누는데 WAS(<code class="language-plaintext highlighter-rouge">Servlet</code>) 수준인 <code class="language-plaintext highlighter-rouge">ApplicationScope</code>, 연결 수준인 <code class="language-plaintext highlighter-rouge">SessionScope</code>, 요청 수준인 <code class="language-plaintext highlighter-rouge">ReqeustScope</code> 로 나뉜다.
+즉 <code class="language-plaintext highlighter-rouge">Spring</code> 내에서도 여러 수준을 위한 <code class="language-plaintext highlighter-rouge">Singleton</code> 이 프레임워크에 의해 관리되고 있다.</p>
+
+<h3 id="scope-지정방법">Scope 지정방법</h3>
+
+<h4 id="singletonscope"><code class="language-plaintext highlighter-rouge">SingletonScope</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.beans.factory.config.ConfigurableBeanFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Scope</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SingletonBean</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">singleton1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="s">"singleton"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">singleton2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="nc">ConfigurableBeanFactory</span><span class="o">.</span><span class="na">SCOPE_SINGLETON</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">singleton3</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h4 id="prototypescope"><code class="language-plaintext highlighter-rouge">PrototypeScope</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.beans.factory.config.ConfigurableBeanFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Scope</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrototypeBean</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">prototype1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="s">"prototype"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">prototype2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="nc">ConfigurableBeanFactory</span><span class="o">.</span><span class="na">SCOPE_PROTOTYPE</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">prototype3</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="requestscope"><code class="language-plaintext highlighter-rouge">RequestScope</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Scope</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.context.WebApplicationContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.context.annotation.RequestScope</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RequestBean</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">request1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="s">"request"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">request2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="nc">WebApplicationContext</span><span class="o">.</span><span class="na">SCOPE_REQUEST</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">request3</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@RequestScope</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">request4</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h4 id="sessionscope"><code class="language-plaintext highlighter-rouge">SessionScope</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Scope</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.context.WebApplicationContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.context.annotation.SessionScope</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SessionBean</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">session1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="s">"session"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">session2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="nc">WebApplicationContext</span><span class="o">.</span><span class="na">SCOPE_SESSION</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">session3</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@SessionScope</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">session4</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="applicationscope"><code class="language-plaintext highlighter-rouge">ApplicationScope</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Scope</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.context.WebApplicationContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.context.annotation.ApplicationScope</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApplicationBean</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">application1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="s">"application"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">application2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Scope</span><span class="o">(</span><span class="nc">WebApplicationContext</span><span class="o">.</span><span class="na">SCOPE_APPLICATION</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">application3</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@ApplicationScope</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">application4</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="패턴의-조합">패턴의 조합</h2>
+
+<h3 id="delegator-패턴에서-사용될-수-있는-singelton-idiom"><code class="language-plaintext highlighter-rouge">Delegator</code> 패턴에서 사용될 수 있는 <code class="language-plaintext highlighter-rouge">Singelton</code> Idiom</h3>
+
+<blockquote>
+  <p>아래 예시는 <code class="language-plaintext highlighter-rouge">Eager Initialization</code> 으로 Delegator 패턴을 제공한다.</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">class</span> <span class="nc">Delegators</span> <span class="o">{</span>
+    
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Map</span> <span class="n">delegators</span><span class="o">;</span>
+    
+    <span class="kd">static</span> <span class="o">{</span>
+      <span class="n">delegators</span> <span class="o">=</span> <span class="nc">Maps</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+              <span class="s">"algorithm1"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Delegator1</span><span class="o">(),</span>
+              <span class="s">"algorithm2"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Delegator2</span><span class="o">(),</span>
+              <span class="s">"algorithm3"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Delegator3</span><span class="o">()</span>
+      <span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="o">&lt;</span><span class="no">T</span> <span class="kd">extends</span> <span class="nc">Delegator</span><span class="o">&gt;</span> <span class="no">T</span> <span class="nf">get</span><span class="o">(</span><span class="nc">String</span> <span class="n">algorithm</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">delegators</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">algorithm</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h2 id="주의사항">주의사항</h2>
+
+<p>class 는 Method Area 를 사용한다. 소프트웨어 수준의 <code class="language-plaintext highlighter-rouge">Sinlgeton</code> 는 class 기준의 load 를 활용하므로
+많이 사용할 수록 JVM 의 메모리관리에서 해당 영억의 확보를 고려해야한다.</p>
+
+<h2 id="그-외">그 외</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Singleton</code> 의 구현방식 중 하니인 <code class="language-plaintext highlighter-rouge">Immutable</code> 은 <code class="language-plaintext highlighter-rouge">external class</code> 를 활용할 경우에 Parameter 의 <strong>불변성을 확보</strong> 할 수 있다.
+개인이 집적코드를 작성하여 <strong>method 에서 parameter 를 <code class="language-plaintext highlighter-rouge">final</code> 로 지정</strong> 할 수도 있지만, 그 외의 <strong>사용자 관점에서 오류를 예방하거나 Mocking 에서 많이 사용된다.</strong></p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscribe to on-Sync</h3>
+                    <p>Get the latest posts delivered right to your inbox</p>
+                    <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template no-image">
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/computer-science-syntactic-sugar">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Computer science</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Java</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Computer Science (1) - Syntactic Sugar</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>Syntactic Sugar
+
+</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template no-image">
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/software-engineering">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Software engineering</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Software Engineering (1) - 전체 구조 요약</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>Software Engineering
+
+</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/">
+            
+                <img src="/assets/images/favicon.png" alt="on-Sync icon" />
+            
+            <span>on-Sync</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Design Pattern (1) - Singleton</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Design+Pattern+%281%29+-+Singleton&amp;url=https://on-sync.github.iodesign-pattern-singleton"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://on-sync.github.iodesign-pattern-singleton"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/">on-Sync</a> &copy; 2023</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyllt/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    <a href="https://facebook.com/ghost" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://twitter.com/tryghost" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                <h1 class="subscribe-overlay-title">Subscribe to on-Sync</h1>
+                <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+                <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69281367-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

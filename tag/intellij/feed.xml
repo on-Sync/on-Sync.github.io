@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/intellij/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2023-03-05T10:18:42+00:00</updated>
+  <id>/tag/intellij/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">on-Sync | </title>
+  
+
+  
+    <subtitle>개발일기</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">IntelliJ Plug-In 소개 (1) - GitToolBox</title>
+      <link href="/intellij-plugin-gittoolbox" rel="alternate" type="text/html" title="IntelliJ Plug-In 소개 (1) - GitToolBox" />
+      <published>2022-09-11T00:00:00+00:00</published>
+      <updated>2022-09-11T00:00:00+00:00</updated>
+      <id>/intellij-plugin-gittoolbox</id>
+      <content type="html" xml:base="/intellij-plugin-gittoolbox">&lt;h1 id=&quot;협업을-위한-플러그인&quot;&gt;협업을 위한 플러그인&lt;/h1&gt;
+
+&lt;p&gt;여러사람이 함께 일하는 프로젝트는 변화가 빈번합니다. &lt;br /&gt;
+그 만큼 Tracking 에 신경써야하는 노고와 시간이 필요하고요. &lt;br /&gt;
+물론 일하다 보면 놓치는 경우도 많기에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GitToolBox&lt;/code&gt; 라는 플러그인을 소개 드립니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;gittoolbox-의-기능&quot;&gt;GitToolBox 의 기능&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;기능은 플러그인의 공식 설명에 대한 요약과 그 예시를 말씀드리겠습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;1-git-status&quot;&gt;1. Git status:&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;number of ahead / behind commits for current branch as status bar widget
+ahead / behind, current branch, tags on HEAD as Project View decoration on modules
+status bar widget with detailed information and additional actions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Git status 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git status&lt;/code&gt; 의 내용을 다음과 같이 요약하여 제공합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/post_content/2022-09-12-intellij-plugin-gittoolbox/git-status.png&quot; alt=&quot;git-status.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트 Window 에서 Working Directory 의 정보를 직관적으로 확인할 수 있습니다.
+    &lt;ul&gt;
+      &lt;li&gt;현재 브랜치 이름 (Current Head)&lt;/li&gt;
+      &lt;li&gt;변경된 파일 수 (Changes File Count)&lt;/li&gt;
+      &lt;li&gt;Remote 와 Local 의 차이 (Revision Diff)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;위 예시를 설명해 보겠습니다. &lt;br /&gt;
+현재 Working Directory 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치를 Check out 한 상태입니다. &lt;br /&gt;
+Remote 와 비교해서 Local 의 Revision 이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;개 Commit 로 앞선 상태이기도 합니다. &lt;br /&gt;
+마지막으로 현재 작업(변경) 중인 파일은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt;개가 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;2-git-blame&quot;&gt;2. Git blame:&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;inline blame - show blame for line at caret in active editor
+blame details balloon for line at caret
+status bar widget with detailed information and additional actions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Git Blame 기능은 IntelliJ 에서 기본으로 제공하고 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/post_content/2022-09-12-intellij-plugin-gittoolbox/git-blame-origin.png&quot; alt=&quot;git-blame-origin.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;단, 위 예시와 같이 현재 라인의 변경사유를 확인하려면 개별 Window 를 열어야 하는 번거로움이 있습니다.
+이러한 불편함을 줄이기 위해 동적인 balloon 을 다음과 같이 제공합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/post_content/2022-09-12-intellij-plugin-gittoolbox/git-blame-gittoolbox.png&quot; alt=&quot;git-blame-gittoolbox.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;작업자는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add Git Blame&lt;/code&gt; 으로 Editor 의 공간낭비를 하지 않아도 되고, 직관적으로 마지막 변경사유를 확인할 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;3-auto-fetch&quot;&gt;3. Auto fetch:&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;runs git fetch at fixed intervals
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch 자동화&lt;/code&gt;는 제가 GitToolBox 를 쓰는 가장 큰 이유입니다.
+Git 은 Remote 의 최신 변경사항을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt; 를 통해 확인합니다.
+&lt;strong&gt;Local 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt; 를 수행하지 않으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; 필요 여부를 모르게 됩니다.&lt;/strong&gt;
+이때 사용자가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pull Request&lt;/code&gt; 를 진행하면 예기치 못한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Conflict&lt;/code&gt; 를 맞이하게 됩니다.
+그렇게 되면 사용자는 본인의 브랜치에서 커밋을 재 정비해야하고,
+Remote 에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Force 권한&lt;/code&gt; 이 없다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Project Owner&lt;/code&gt; 에게 번거로운 요청을 하게 될 것입니다.
+여러 작업자가 동시에 프로젝트를 진행한다면 이런 경우는 더욱 빈번할 수도 있고요.
+그렇기에 협업에서 Git Remote 에 대한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch &amp;amp; update&lt;/code&gt; 는 중요하고,
+이를 판단하기 위해 사용자는 항상 Remote 의 변경유무를 인지해야합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;4-push-tags-on-current-branch&quot;&gt;4. Push tags on current branch:&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;available in VCS / Git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;IntelliJ 의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Git &amp;gt; Push&lt;/code&gt; 에서도 지원하는 기능입니다. (추천 X)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;5-behind-tracker&quot;&gt;5. Behind tracker&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;shows notification when behind count of current branch changes and is non-zero
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;기능 1번에서 설명한 파일 변경 수에 대한 내용입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;6-branch-name-completion-in-commit-dialog&quot;&gt;6. Branch name completion in Commit dialog:&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;provides branch name completion inside Commit dialog message
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;snippet 과 같이 dropbox 를 제공합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/post_content/2022-09-12-intellij-plugin-gittoolbox/git-message-auto-complete.png&quot; alt=&quot;git-message-auto-complete.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;7-gitmoji-completion-in-commit-dialog&quot;&gt;7. Gitmoji completion in Commit dialog:&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;provides gitmoji completion inside Commit dialog message
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;기능 6번과 동일한 내용입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;8-recent-branches-switcher&quot;&gt;8. Recent branches switcher&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;switch between recently used branches
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Alt + ` &amp;gt; 7&lt;/code&gt; 을 단순화 시킨 기능입니다. (추천 X)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;9-outdated-branches-cleanup&quot;&gt;9. Outdated branches cleanup&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find and remove merged and stale branches
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;오래된 브랜치를 삭제합니다. &lt;br /&gt;
+Merge 되지 않은 브랜치는 문답을 확인을 요청합니다.
+자동화를 위해 시간단위 주기를 설정할 수 있습니다.
+저는 위험하다고 생각해서 사용하지 않습니다. (추천 X)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;10-git-extender-integration&quot;&gt;10. Git Extender integration&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;can be selected as update action executed from behind tracker popup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1번 기능이 우측하단에 표시되며, 클릭시 확장통합을 위한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Refresh Status&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Update&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fetch&lt;/code&gt; 등의 기능을 제공합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/post_content/2022-09-12-intellij-plugin-gittoolbox/git-extender.png&quot; alt=&quot;git-extender.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;그 중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Update&lt;/code&gt; 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Merge&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rebase&lt;/code&gt; 를 선택할 수 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/post_content/2022-09-12-intellij-plugin-gittoolbox/git-update-action.png&quot; alt=&quot;git-update-action.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이 기능은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Pannel&lt;/code&gt; 이 아닌 우측하단의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;popup&lt;/code&gt; 기능을 활용할 수 있다는 것이 특징입니다.&lt;/p&gt;
+&lt;/blockquote&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>on-Sync</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="IntelliJ" />
+      
+        <category term="Plug-In" />
+      
+        <category term="Git" />
+      
+
+      
+        <summary type="html">협업을 위한 플러그인</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

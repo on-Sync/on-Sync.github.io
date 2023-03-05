@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>개발일기</description>
+    <link>
+    </link>
+    
+      
+      <item>
+        <title>Computer Science (1) - 컴퓨터 과학은 약속입니다.</title>
+        
+          <description>&lt;h1 id=&quot;컴퓨터-과학의-기초&quot;&gt;컴퓨터 과학의 기초&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sun, 05 Mar 2023 00:00:00 +0000</pubDate>
+        <link>
+        /computer-science-1</link>
+        <guid isPermaLink="true">/computer-science-1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Computer Science (1) - Syntactic Sugar</title>
+        
+          <description>&lt;h1 id=&quot;syntactic-sugar&quot;&gt;Syntactic Sugar&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Mon, 21 Nov 2022 00:00:00 +0000</pubDate>
+        <link>
+        /computer-science-syntactic-sugar</link>
+        <guid isPermaLink="true">/computer-science-syntactic-sugar</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Design Pattern (1) - Singleton</title>
+        
+          <description>&lt;h1 id=&quot;singleton&quot;&gt;Singleton&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Wed, 16 Nov 2022 00:00:00 +0000</pubDate>
+        <link>
+        /design-pattern-singleton</link>
+        <guid isPermaLink="true">/design-pattern-singleton</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Software Engineering (1) - 전체 구조 요약</title>
+        
+          <description>&lt;h1 id=&quot;software-engineering&quot;&gt;Software Engineering&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate>
+        <link>
+        /software-engineering</link>
+        <guid isPermaLink="true">/software-engineering</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>JVM 이해하기 (1) - 기본 동작 방식</title>
+        
+          <description>&lt;h1 id=&quot;jvm-이란-&quot;&gt;JVM 이란 ?&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sun, 11 Sep 2022 00:00:00 +0000</pubDate>
+        <link>
+        /java-jvm</link>
+        <guid isPermaLink="true">/java-jvm</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>IntelliJ Plug-In 소개 (1) - GitToolBox</title>
+        
+          <description>&lt;h1 id=&quot;협업을-위한-플러그인&quot;&gt;협업을 위한 플러그인&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sun, 11 Sep 2022 00:00:00 +0000</pubDate>
+        <link>
+        /intellij-plugin-gittoolbox</link>
+        <guid isPermaLink="true">/intellij-plugin-gittoolbox</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Git 설정하기 (2) - 설정 공유하기</title>
+        
+          <description>&lt;h1 id=&quot;설정공유&quot;&gt;설정공유&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sun, 11 Sep 2022 00:00:00 +0000</pubDate>
+        <link>
+        /git-config-share</link>
+        <guid isPermaLink="true">/git-config-share</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Git 설정하기 (1) - 개행 설정하기</title>
+        
+          <description>&lt;h1 id=&quot;눈에-보이지-않는-변경사항&quot;&gt;눈에 보이지 않는 변경사항&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
+        <link>
+        /git-config-crlf</link>
+        <guid isPermaLink="true">/git-config-crlf</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>GitHub Pages 블로그 만들기 (1)</title>
+        
+          <description>&lt;h1 id=&quot;github-pages-란-&quot;&gt;GitHub Pages 란 ?&lt;/h1&gt;
+
+</description>
+        
+        <pubDate>Mon, 15 Aug 2022 00:00:00 +0000</pubDate>
+        <link>
+        /github-page-jekyll-jasper-1</link>
+        <guid isPermaLink="true">/github-page-jekyll-jasper-1</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

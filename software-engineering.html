@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Software Engineering (1) - 전체 구조 요약</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="개발일기" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/software-engineering" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="on-Sync" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Software Engineering (1) - 전체 구조 요약" />
+    <meta property="og:description" content="Software Engineering Software Engineering 에서 소프트웨서 개발은 다음과 같은 포함관계로 구체화된다. Software Development Process (절차) Software Development Methodology (방법론) Programming Paradigm (패러다임) Software Design Pattern (패턴) Programming Idiom (관용구) Programming Implementation (구현체) (i.g Concrete Algorithm) Software Development Process (절차) SDLC 을 조합하는 10가지 개발절차 모델 소프트웨어 개발 프로세스 모델의 이해" />
+    <meta property="og:url" content="/software-engineering" />
+    <meta property="og:image" content="/assets/images/blog-cover-winter.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/ghost" />
+    <meta property="article:author" content="https://www.facebook.com/ghost" />
+    <meta property="article:published_time" content="2022-11-13T00:00:00+00:00" />
+    <meta property="article:modified_time" content="2022-11-13T00:00:00+00:00" />
+    <meta property="article:tag" content="Software Engineering" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Software Engineering (1) - 전체 구조 요약" />
+    <meta name="twitter:description" content="Software Engineering Software Engineering 에서 소프트웨서 개발은 다음과 같은 포함관계로 구체화된다. Software Development Process (절차) Software Development Methodology (방법론) Programming Paradigm (패러다임) Software Design Pattern (패턴) Programming Idiom (관용구) Programming Implementation (구현체) (i.g Concrete Algorithm) Software Development Process (절차) SDLC 을 조합하는 10가지 개발절차 모델 소프트웨어 개발 프로세스 모델의 이해" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image" content="/assets/images/blog-cover-winter.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="on-Sync" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Software Engineering" />
+    <meta name="twitter:site" content="@tryghost" />
+    <meta name="twitter:creator" content="@tryghost" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "on-Sync",
+        "logo": "/"
+    },
+    "url": "/software-engineering",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/assets/images/blog-cover-winter.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/software-engineering"
+    },
+    "description": "Software Engineering Software Engineering 에서 소프트웨서 개발은 다음과 같은 포함관계로 구체화된다. Software Development Process (절차) Software Development Methodology (방법론) Programming Paradigm (패러다임) Software Design Pattern (패턴) Programming Idiom (관용구) Programming Implementation (구현체) (i.g Concrete Algorithm) Software Development Process (절차) SDLC 을 조합하는 10가지 개발절차 모델 소프트웨어 개발 프로세스 모델의 이해"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Software Engineering (1) - 전체 구조 요약" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/">on-Sync</a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">About</a></li>
+    <li class="nav-getting-started" role="menuitem"><a href="/tag/getting-started/">Getting Started</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/ghost" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tryghost" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscribe</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full  tag-software-engineering post no-image">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="13 November 2022">13 November 2022</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/software-engineering/'>SOFTWARE ENGINEERING</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Software Engineering (1) - 전체 구조 요약</h1>
+            </header>
+
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <h1 id="software-engineering">Software Engineering</h1>
+
+<blockquote>
+  <p>Software Engineering 에서 소프트웨서 개발은 다음과 같은 포함관계로 구체화된다.</p>
+</blockquote>
+
+<ul>
+  <li>Software Development Process (절차)
+    <ul>
+      <li>Software Development Methodology (방법론)
+        <ul>
+          <li>Programming Paradigm (패러다임)
+            <ul>
+              <li>Software Design Pattern (패턴)
+                <ul>
+                  <li>Programming Idiom (관용구)
+                    <ul>
+                      <li>Programming Implementation (구현체) (i.g Concrete Algorithm)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="software-development-process-절차">Software Development Process (절차)</h3>
+
+<blockquote>
+  <p>SDLC 을 조합하는 10가지 개발절차 모델</p>
+</blockquote>
+
+<ul>
+  <li>소프트웨어 개발 프로세스 모델의 이해</li>
+  <li>주머구구식 모델</li>
+  <li>선형 순차적 모델</li>
+  <li>V모델 (Test by Step)</li>
+  <li>진화적 프로세스 모델 (N-Prototype)</li>
+  <li>나선형 모델</li>
+  <li>단계적 개발 모델 (Release)</li>
+  <li>통합 프로세스 모델 (Progressive)</li>
+  <li>애자일 프로세스 모델 (On needs basis, like YAGNI)</li>
+</ul>
+
+<h4 id="software-development-life-cycle-개발-생명-주기-sdlc">Software Development Life Cycle (개발 생명 주기, SDLC)</h4>
+
+<ul>
+  <li>요구사항 정의 (R, Requirement)</li>
+  <li>요구사항 분석 (A, Analysis)</li>
+  <li>설계 (D, Design)</li>
+  <li>구현 (C, Coding)</li>
+  <li>테스트 (T, Test)</li>
+  <li>유지보수 (M, Maintenance)</li>
+</ul>
+
+<h3 id="software-development-methodology-방법론">Software Development Methodology (방법론)</h3>
+
+<ul>
+  <li>개발절차 모델의 구체화된 방법
+    <ul>
+      <li>(e.g, Agile`s Extreme Programming = XP)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="방법론의-구체화-대상">방법론의 구체화 대상</h4>
+
+<ul>
+  <li>작업절차</li>
+  <li>작업방법</li>
+  <li>산출물</li>
+  <li>관리</li>
+  <li>기법</li>
+  <li>도구</li>
+</ul>
+
+<h3 id="programming-paradigm-패러다임">Programming Paradigm (패러다임)</h3>
+
+<ul>
+  <li>개발언어 탄생(설계)의 기반이자 특징이 될 수 있다.
+    <ul>
+      <li>(e.g, Procedural = C, Object-oriented = Java )</li>
+    </ul>
+  </li>
+  <li>방법론을 실현하기 위한 지향점 또는 이념.
+    <ul>
+      <li>(e.g, OOP, DDD, TDD, CBD …)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="software-design-pattern-패턴">Software Design Pattern (패턴)</h3>
+
+<ul>
+  <li>패러다임 내에서 소프트웨어의 설계를 위한 반복적인 유형을 말한다.</li>
+  <li>유지보수를 위해 재사용성에 중점을 둔다.</li>
+  <li><strong>정답(구현)이 아닌 방향성(해결책)의 제시이며</strong>, 책 또는 논문으로 공유되고 전파되어졌다.</li>
+  <li>크게 다음과 같이 분류할 수 있다.
+    <ul>
+      <li>GoF`s Patterns
+        <ul>
+          <li>디자인 패턴 중 가장 유명한 제안으로 Design Patterns 란 이름의 서적으로 집필되었다.</li>
+          <li>크게 생성(Assignment), 구조(Composition), 행동(Execution) 관점으로 분류된다.
+            <ul>
+              <li>비슷한 서적인 Code Complete 에서 제시된 디자인 패턴과 다소 중첩된다.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Concurrency Patterns
+        <ul>
+          <li>자원을 공유하는 방법을 제안한다.</li>
+        </ul>
+      </li>
+      <li>Architectural Patterns
+        <ul>
+          <li>다수의 소프트웨어를 연결/구조화 하는 방법을 제안한다.</li>
+        </ul>
+      </li>
+      <li>그외 패턴들
+        <ul>
+          <li>문헌이 아닌 코드/프레임워크로 전파되어 사용되는 패턴</li>
+          <li>(e.g, Dependency Injection, Lazy Loading, Delegation …)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="idiom-관용구">Idiom (관용구)</h3>
+
+<ul>
+  <li>Idiom 은 제시된 패턴(방향성)을 구현한 것 중 정형화된 작성 방법을 말한다.</li>
+  <li>동일한 패러다임을 지원하는 언어는 같은 패턴을 구사할 수 있지만, 같은 관용구는 언어의 전체적인 특성에 따라 다르게 표현될 수 있다.</li>
+  <li>관용구는 구현체 중 보편화된 작성 방법들이다.</li>
+</ul>
+
+<h3 id="implementation-구현체">Implementation (구현체)</h3>
+
+<blockquote>
+  <p>i.e, Concrete Algorithm</p>
+</blockquote>
+
+<ul>
+  <li>논리 또는 구조에 대해 구체적으로 작성된 내용을 말한다.</li>
+  <li>주어진 전략이나 모델뿐만 아니라 사용자(개발자)에 따라 작성된 내용이 상이할 수 있다.
+    <ul>
+      <li><strong><em>작성자의 개인적인 생각으론, 구현방법 또는 구현체가 상위 집합에서 제시된 개념에 벗어날 수록 유지보수 비용이 증가한다고 판단하고 있다.</em></strong></li>
+    </ul>
+  </li>
+</ul>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscribe to on-Sync</h3>
+                    <p>Get the latest posts delivered right to your inbox</p>
+                    <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template no-image">
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/design-pattern-singleton">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Design pattern</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Java</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Design Pattern (1) - Singleton</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>Singleton
+
+</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      7 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/java-jvm">
+                <div class="post-card-image" style="background-image: url(/assets/images/post_cover/Java-Logo.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/java-jvm">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Git</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">JVM 이해하기 (1) - 기본 동작 방식</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>JVM 이란 ?
+
+</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      2 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/">
+            
+                <img src="/assets/images/favicon.png" alt="on-Sync icon" />
+            
+            <span>on-Sync</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Software Engineering (1) - 전체 구조 요약</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Software+Engineering+%281%29+-+%EC%A0%84%EC%B2%B4+%EA%B5%AC%EC%A1%B0+%EC%9A%94%EC%95%BD&amp;url=https://on-sync.github.iosoftware-engineering"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://on-sync.github.iosoftware-engineering"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/">on-Sync</a> &copy; 2023</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyllt/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    <a href="https://facebook.com/ghost" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://twitter.com/tryghost" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                <h1 class="subscribe-overlay-title">Subscribe to on-Sync</h1>
+                <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+                <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69281367-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>
